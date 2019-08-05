@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OTPInput from "./lib";
+import OTPInput from "src/components";
 
 function App() {
   const [OTP, setOTP] = useState("");
