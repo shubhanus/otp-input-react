@@ -47,7 +47,8 @@ var OtpInput = function OtpInput(_ref) {
       hasErrored = _ref.hasErrored,
       errorStyle = _ref.errorStyle,
       shouldAutoFocus = _ref.shouldAutoFocus,
-      value = _ref.value,
+      _ref$value = _ref.value,
+      value = _ref$value === undefined ? "" : _ref$value,
       onChange = _ref.onChange,
       isInputNum = _ref.isInputNum,
       containerStyle = _ref.containerStyle;
