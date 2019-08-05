@@ -24,7 +24,7 @@ const OtpInput = ({
   hasErrored,
   errorStyle,
   shouldAutoFocus,
-  value,
+  value = "",
   onChange,
   isInputNum,
   containerStyle
