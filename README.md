@@ -4,34 +4,33 @@ A fully customizable, one-time password input component for the web built with R
 
 ![GIPHY](https://media.giphy.com/media/9JiszPVOX5FuPfJm39/giphy.gif)
 
+## Working Demo - 
+
 ## Installation
 
 To install the latest stable version:
 
 ```
-npm install --save react-otp-input
+npm install --save otp-input-react
 ```
 
 Basic usage:
 
 ```javascript
-import React, { useState } from "react";
-import OTPInput from "./components";
-
 function App() {
   const [OTP, setOTP] = useState("");
   return (
     <OTPInput
       value={OTP}
       onChange={setOTP}
-      shouldAutoFocus
-      numInputs={4}
-      isInputNum
+      autoFocus
+      OTPLength={4}
+      otpType="number"
+      disabled={false}
+      secure
     />
   );
 }
-
-export default App;
 ```
 
 ## API
@@ -43,20 +42,23 @@ export default App;
     <th>Required</th>
     <th>Default</th>
     <th>Description</th>
+    <th>Status</th>
   </tr>
   <tr>
-    <td>numInputs</td>
+    <td>OTPLength</td>
     <td>number</td>
-    <td><strong>true</strong></td>
+    <td>false</td>
     <td>4</td>
-    <td>Number of OTP inputs to be rendered.</td>
+    <td>Number of input boxes.</td>
+    <td>Working</td>
   </tr>
   <tr>
     <td>onChange</td>
     <td>function</td>
     <td><strong>true</strong></td>
-    <td>console.log</td>
+    <td>-</td>
     <td>Returns OTP code typed in inputs.</td>
+    <td>Working</td>
   </tr>
   <tr>
     <td>value</td>
@@ -64,88 +66,38 @@ export default App;
     <td><strong>true</strong></td>
     <td>''</td>
     <td>The value of the otp passed into the component.</td>
-  </tr>
+    <td>Working</td>
+  </tr>      
   <tr>
-    <td>separator</td>
-    <td>component<br></td>
-    <td>false</td>
-    <td></td>
-    <td>Provide a custom separator between inputs by passing a component. For instance, <code>&lt;span&gt;-&lt;/span&gt;</code> would add <code>-</code> between each input</td>
-  </tr>
-  <tr>
-    <td>containerStyle</td>
-    <td>style (object) / className (string)</td>
-    <td>false</td>
-    <td>none</td>
-    <td>Style applied or class passed to container of inputs.</td>
-  </tr>
-  <tr>
-    <td>inputStyle</td>
-    <td>style (object) / className (string)</td>
-    <td>false</td>
-    <td>none</td>
-    <td>Style applied or class passed to each input.</td>
-  </tr>
-  <tr>
-    <td>focusStyle</td>
-    <td>style (object) / className (string)</td>
-    <td>false</td>
-    <td>none</td>
-    <td>Style applied or class passed to inputs on focus.</td>
-  </tr>
-  <tr>
-    <td>isDisabled</td>
+    <td>disabled</td>
     <td>boolean</td>
     <td>false</td>
     <td>false</td>
     <td>Disables all the inputs.</td>
-  </tr>
+    <td>Working</td>
+  </tr>    
   <tr>
-    <td>disabledStyle</td>
-    <td>style (object) / className (string)</td>
-    <td>false</td>
-    <td>none</td>
-    <td>Style applied or class passed to each input when disabled.</td>
-  </tr>
-  <tr>
-    <td>hasErrored</td>
-    <td>boolean</td>
-    <td>false</td>
-    <td>false</td>
-    <td>Indicates there is an error in the inputs.</td>
-  </tr>
-  <tr>
-    <td>errorStyle</td>
-    <td>style (object) / className (string)</td>
-    <td>false</td>
-    <td>none</td>
-    <td>Style applied or class passed to each input when errored.</td>
-  </tr>
-  <tr>
-    <td>shouldAutoFocus</td>
+    <td>autoFocus</td>
     <td>boolean</td>
     <td>false</td>
     <td>false</td>
     <td>Auto focuses input on inital page load.</td>
+    <td>Working</td>
   </tr>
   <tr>
-    <td>isInputNum</td>
-    <td>boolean</td>
+    <td>otpType</td>
+    <td>Enum: any|number </td>
     <td>false</td>
-    <td>false</td>
-    <td>Restrict input to only numbers.</td>
+    <td>any</td>
+    <td>any - allows any value. number - allow only numbers.</td>
+    <td>Working</td>
   </tr>
+  <tr>
+    <td>secure</td>
+    <td>Boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Change input type to password.</td>
+    <td>Working</td>
+  </tr>  
 </table>
-
-## Checklist
-
-- [ ] Add flowtypes
-- [ ] Add proper docs
-- [ ] Add ESLint, Prettier for code quality
-- [ ] Add styling support for states including focus/disabled
-- [ ] Travis CI, Codecov
-- [ ] Write tests
-
-## Contributing
-
-Feel free to open issues and pull requests!

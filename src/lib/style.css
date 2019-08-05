@@ -1,0 +1,10 @@
+.otp__input-root {
+  display: flex;
+}
+
+.otp__input-root input {
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  margin-right: 20px;
+}

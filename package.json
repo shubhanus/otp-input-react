@@ -1,5 +1,6 @@
 {
   "name": "otp-input-react",
+  "homepage": "https://shubhanus.github.io/otp-input-react",
   "author": "shubhanu sharma",
   "description": "React functional component for otp input",
   "version": "0.0.4",
@@ -19,15 +20,15 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-dom": "^16.8.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish:npm": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/components --out-dir dist --copy-files"
+    "publish:npm": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/lib --out-dir dist --copy-files",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +50,12 @@
     "babel-cli": "6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
-    "babel-preset-stage-2": "6.24.1"
+    "babel-preset-stage-2": "6.24.1",
+    "gh-pages": "2.0.1"
+  },
+  "dependencies": {
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-scripts": "3.0.1"
   }
 }
