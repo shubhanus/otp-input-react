@@ -1,68 +1,151 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-otp-input
 
-## Available Scripts
+A fully customizable, one-time password input component for the web built with React functional component.
 
-In the project directory, you can run:
+![GIPHY](https://media.giphy.com/media/9JiszPVOX5FuPfJm39/giphy.gif)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To install the latest stable version:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+npm install --save react-otp-input
+```
 
-### `npm test`
+Basic usage:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+import React, { useState } from "react";
+import OTPInput from "./components";
 
-### `npm run build`
+function App() {
+  const [OTP, setOTP] = useState("");
+  return (
+    <OTPInput
+      value={OTP}
+      onChange={setOTP}
+      shouldAutoFocus
+      numInputs={4}
+      isInputNum
+    />
+  );
+}
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+export default App;
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<table>
+  <tr>
+    <th>Name<br></th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>numInputs</td>
+    <td>number</td>
+    <td><strong>true</strong></td>
+    <td>4</td>
+    <td>Number of OTP inputs to be rendered.</td>
+  </tr>
+  <tr>
+    <td>onChange</td>
+    <td>function</td>
+    <td><strong>true</strong></td>
+    <td>console.log</td>
+    <td>Returns OTP code typed in inputs.</td>
+  </tr>
+  <tr>
+    <td>value</td>
+    <td>string / number</td>
+    <td><strong>true</strong></td>
+    <td>''</td>
+    <td>The value of the otp passed into the component.</td>
+  </tr>
+  <tr>
+    <td>separator</td>
+    <td>component<br></td>
+    <td>false</td>
+    <td></td>
+    <td>Provide a custom separator between inputs by passing a component. For instance, <code>&lt;span&gt;-&lt;/span&gt;</code> would add <code>-</code> between each input</td>
+  </tr>
+  <tr>
+    <td>containerStyle</td>
+    <td>style (object) / className (string)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Style applied or class passed to container of inputs.</td>
+  </tr>
+  <tr>
+    <td>inputStyle</td>
+    <td>style (object) / className (string)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Style applied or class passed to each input.</td>
+  </tr>
+  <tr>
+    <td>focusStyle</td>
+    <td>style (object) / className (string)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Style applied or class passed to inputs on focus.</td>
+  </tr>
+  <tr>
+    <td>isDisabled</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Disables all the inputs.</td>
+  </tr>
+  <tr>
+    <td>disabledStyle</td>
+    <td>style (object) / className (string)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Style applied or class passed to each input when disabled.</td>
+  </tr>
+  <tr>
+    <td>hasErrored</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Indicates there is an error in the inputs.</td>
+  </tr>
+  <tr>
+    <td>errorStyle</td>
+    <td>style (object) / className (string)</td>
+    <td>false</td>
+    <td>none</td>
+    <td>Style applied or class passed to each input when errored.</td>
+  </tr>
+  <tr>
+    <td>shouldAutoFocus</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Auto focuses input on inital page load.</td>
+  </tr>
+  <tr>
+    <td>isInputNum</td>
+    <td>boolean</td>
+    <td>false</td>
+    <td>false</td>
+    <td>Restrict input to only numbers.</td>
+  </tr>
+</table>
 
-### `npm run eject`
+## Checklist
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [ ] Add flowtypes
+- [ ] Add proper docs
+- [ ] Add ESLint, Prettier for code quality
+- [ ] Add styling support for states including focus/disabled
+- [ ] Travis CI, Codecov
+- [ ] Write tests
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Feel free to open issues and pull requests!
