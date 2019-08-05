@@ -4,7 +4,7 @@
   "description": "React functional component for otp input",
   "version": "0.0.1",
   "private": true,
-  "main": "lib/index.js",
+  "main": "src/lib/index.js",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
