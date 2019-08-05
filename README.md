@@ -4,7 +4,9 @@ A fully customizable, one-time password input component for the web built with R
 
 ![GIPHY](https://media.giphy.com/media/9JiszPVOX5FuPfJm39/giphy.gif)
 
-## Working Demo - 
+![GIPHY](https://media.giphy.com/media/da1TEJz9E7xbk5VSsU/giphy.gif)
+
+### [Working Demo](https://shubhanus.github.io/otp-input-react/)
 
 ## Installation
 
@@ -99,5 +101,21 @@ function App() {
     <td>false</td>
     <td>Change input type to password.</td>
     <td>Working</td>
+  </tr>  
+  <tr>
+    <td>inputClass</td>
+    <td>String</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Add class to input tag.</td>
+    <td>TODO</td>
+  </tr>  
+  <tr>
+    <td>rootClass</td>
+    <td>String</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Add class to Root Div.</td>
+    <td>TODO</td>
   </tr>  
 </table>
