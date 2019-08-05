@@ -21,13 +21,9 @@ var _Input = require("./Input");
 
 var _Input2 = _interopRequireDefault(_Input);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+require("./style.css");
 
-// keyCode constants
-var BACKSPACE = 8;
-var LEFT_ARROW = 37;
-var RIGHT_ARROW = 39;
-var DELETE = 46;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Doesn't really check if it's a style Object
 // Basic implemenetation to check if it's not a string
@@ -38,20 +34,14 @@ var isStyleObject = exports.isStyleObject = function isStyleObject(obj) {
 };
 
 var OtpInput = function OtpInput(_ref) {
-  var numInputs = _ref.numInputs,
-      inputStyle = _ref.inputStyle,
-      focusStyle = _ref.focusStyle,
-      separator = _ref.separator,
-      isDisabled = _ref.isDisabled,
-      disabledStyle = _ref.disabledStyle,
-      hasErrored = _ref.hasErrored,
-      errorStyle = _ref.errorStyle,
-      shouldAutoFocus = _ref.shouldAutoFocus,
+  var OTPLength = _ref.OTPLength,
+      disabled = _ref.disabled,
+      autoFocus = _ref.autoFocus,
       _ref$value = _ref.value,
       value = _ref$value === undefined ? "" : _ref$value,
       onChange = _ref.onChange,
-      isInputNum = _ref.isInputNum,
-      containerStyle = _ref.containerStyle;
+      otpType = _ref.otpType,
+      secure = _ref.secure;
 
   var _useState = (0, _react.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
@@ -65,27 +55,30 @@ var OtpInput = function OtpInput(_ref) {
   // Helper to return OTP from input
   var handleOtpChange = function handleOtpChange(otp) {
     var otpValue = otp.join("");
-    onChange(isInputNum ? Number(otpValue) : otpValue);
+    if (otpType === "number") {
+      otpValue = +otpValue;
+    }
+    onChange(otpValue);
   };
 
   // Focus on input by index
   var focusInput = function focusInput(input) {
-    var nextActiveInput = Math.max(Math.min(numInputs - 1, input), 0);
+    var nextActiveInput = Math.max(Math.min(OTPLength - 1, input), 0);
     setActiveInput(nextActiveInput);
   };
 
-  // Focus on next input
-  var focusNextInput = function focusNextInput() {
-    focusInput(activeInput + 1);
-  };
+  /**
+   * @typedef {"next" | "prev"} FocusDirections
+   * @param {FocusDirections} direction
+   */
+  var focusInputByDirection = function focusInputByDirection() {
+    var direction = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "next";
 
-  // Focus on previous input
-  var focusPrevInput = function focusPrevInput() {
-    focusInput(activeInput - 1);
+    focusInput(direction === "next" ? activeInput + 1 : activeInput - 1);
   };
 
   // Change OTP value at focused input
-  var changeCodeAtFocus = function changeCodeAtFocus(_ref2) {
+  var changeActiveInputValue = function changeActiveInputValue(_ref2) {
     var _ref3 = _slicedToArray(_ref2, 1),
         nextValue = _ref3[0];
 
@@ -100,13 +93,13 @@ var OtpInput = function OtpInput(_ref) {
     var otp = getOtpValue();
 
     // Get pastedData in an array of max size (num of inputs - current position)
-    var pastedData = e.clipboardData.getData("text/plain").slice(0, numInputs - activeInput).split("");
+    var clipboardData = e.clipboardData.getData("text/plain").slice(0, OTPLength - activeInput).split("");
 
     // Paste data from focused input onwards
     // eslint-disable-next-line no-plusplus
-    for (var pos = 0; pos < numInputs; ++pos) {
-      if (pos >= activeInput && pastedData.length > 0) {
-        otp[pos] = pastedData.shift();
+    for (var pos = 0; pos < OTPLength; ++pos) {
+      if (pos >= activeInput && clipboardData.length > 0) {
+        otp[pos] = clipboardData.shift();
       }
     }
 
@@ -114,37 +107,49 @@ var OtpInput = function OtpInput(_ref) {
   };
 
   var handleOnChange = function handleOnChange(e) {
-    if (isInputNum && Number.isNaN(Number(e.target.value))) {
+    if (otpType === "number" && Number.isNaN(Number(e.target.value))) {
       // preventing number other then number inputs
       return;
     }
-    changeCodeAtFocus(e.target.value);
-    focusNextInput();
+    changeActiveInputValue(e.target.value);
+    focusInputByDirection("next");
   };
 
   // Handle cases of backspace, delete, left arrow, right arrow
   var handleOnKeyDown = function handleOnKeyDown(e) {
-    if (e.keyCode === BACKSPACE || e.key === "Backspace") {
-      e.preventDefault();
-      changeCodeAtFocus("");
-      focusPrevInput();
-    } else if (e.keyCode === DELETE || e.key === "Delete") {
-      e.preventDefault();
-      changeCodeAtFocus("");
-    } else if (e.keyCode === LEFT_ARROW || e.key === "ArrowLeft") {
-      e.preventDefault();
-      focusPrevInput();
-    } else if (e.keyCode === RIGHT_ARROW || e.key === "ArrowRight") {
-      e.preventDefault();
-      focusNextInput();
+    switch (e.key) {
+      case "Backspace":
+        e.preventDefault();
+        changeActiveInputValue("");
+        focusInputByDirection("prev");
+        break;
+      case "Delete":
+        e.preventDefault();
+        changeActiveInputValue("");
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        focusInputByDirection("prev");
+        break;
+      case "ArrowRight":
+        e.preventDefault();
+        focusInputByDirection("next");
+        break;
+      default:
+        break;
     }
   };
 
-  var checkLength = function checkLength(e) {
+  var handelOnInput = function handelOnInput(e) {
     if (e.target.value.length > 1) {
       e.preventDefault();
-      focusNextInput();
+      focusInputByDirection("next");
     }
+  };
+
+  var onInputFocus = function onInputFocus(index, event) {
+    setActiveInput(index);
+    event.target.select();
   };
 
   var renderInputs = function renderInputs() {
@@ -152,38 +157,22 @@ var OtpInput = function OtpInput(_ref) {
     var inputs = [];
 
     // eslint-disable-next-line no-plusplus
-
-    var _loop = function _loop(i) {
+    for (var index = 0; index < OTPLength; index++) {
       inputs.push(_react2.default.createElement(_Input2.default, {
-        key: i,
-        focus: activeInput === i,
-        value: otp && otp[i],
+        key: index,
+        focus: activeInput === index,
+        value: otp[index],
         onChange: handleOnChange,
         onKeyDown: handleOnKeyDown,
-        onInput: checkLength,
+        onInput: handelOnInput,
         onPaste: handleOnPaste,
-        onFocus: function onFocus(e) {
-          setActiveInput(i);
-          e.target.select();
-        },
-        onBlur: function onBlur() {
-          return setActiveInput(-1);
-        },
-        separator: separator,
-        inputStyle: inputStyle,
-        focusStyle: focusStyle,
-        isLastChild: i === numInputs - 1,
-        isDisabled: isDisabled,
-        disabledStyle: disabledStyle,
-        hasErrored: hasErrored,
-        errorStyle: errorStyle,
-        shouldAutoFocus: shouldAutoFocus,
-        isInputNum: false
+        onInputFocus: onInputFocus,
+        index: index
+        // onBlur={() => setActiveInput(-1)}
+        , disabled: disabled,
+        autoFocus: autoFocus,
+        secure: secure
       }));
-    };
-
-    for (var i = 0; i < numInputs; i++) {
-      _loop(i);
     }
 
     return inputs;
@@ -191,36 +180,30 @@ var OtpInput = function OtpInput(_ref) {
 
   return _react2.default.createElement(
     "div",
-    {
-      style: Object.assign({ display: "flex" }, isStyleObject(containerStyle) && containerStyle),
-      className: !isStyleObject(containerStyle) && containerStyle
-    },
+    { className: "otp__input-root" },
     renderInputs()
   );
 };
 
 OtpInput.propTypes = {
-  numInputs: _propTypes2.default.number,
-  onChange: _propTypes2.default.func,
-  separator: _propTypes2.default.object,
+  OTPLength: _propTypes2.default.number,
+  onChange: _propTypes2.default.func.isRequired,
   containerStyle: _propTypes2.default.object,
-  inputStyle: _propTypes2.default.object,
-  focusStyle: _propTypes2.default.object,
-  isDisabled: _propTypes2.default.bool,
-  disabledStyle: _propTypes2.default.object,
-  hasErrored: _propTypes2.default.bool,
-  errorStyle: _propTypes2.default.object,
-  shouldAutoFocus: _propTypes2.default.bool,
-  isInputNum: _propTypes2.default.bool,
-  value: _propTypes2.default.string
+  disabled: _propTypes2.default.bool,
+  autoFocus: _propTypes2.default.bool,
+  secure: _propTypes2.default.bool,
+  otpType: _propTypes2.default.oneOf(["number", "any"]),
+  value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
 };
 
 OtpInput.defaultProps = {
-  numInputs: 4,
+  OTPLength: 4,
   onChange: function onChange() {},
-  isDisabled: false,
-  shouldAutoFocus: false,
-  value: ""
+  disabled: false,
+  secure: false,
+  autoFocus: true,
+  value: "",
+  otpType: "any"
 };
 
 exports.default = OtpInput;
