@@ -17,7 +17,7 @@
     "type": "git",
     "url": "https://github.com/shubhanus/otp-input-react"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
