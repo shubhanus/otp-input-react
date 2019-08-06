@@ -18,6 +18,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
+var inputDefaultStyles = {
+  width: 32,
+  height: 32,
+  textAlign: "center",
+  marginRight: 20
+};
+
 /**
  * This is react stateless component
  * Renders an input box
@@ -39,7 +46,8 @@ var Input = function Input(_ref) {
       onInputFocus = _ref.onInputFocus,
       index = _ref.index,
       secure = _ref.secure,
-      rest = _objectWithoutProperties(_ref, ["focus", "autoFocus", "disabled", "value", "onInputFocus", "index", "secure"]);
+      inputStyles = _ref.inputStyles,
+      rest = _objectWithoutProperties(_ref, ["focus", "autoFocus", "disabled", "value", "onInputFocus", "index", "secure", "inputStyles"]);
 
   var input = (0, _react.useRef)(null);
   var componentMounted = (0, _react.useRef)(false);
@@ -65,6 +73,7 @@ var Input = function Input(_ref) {
   };
 
   return _react2.default.createElement("input", _extends({
+    style: _extends({}, inputDefaultStyles, inputStyles),
     type: secure ? "password" : "tel",
     maxLength: "1",
     ref: input,
@@ -82,7 +91,8 @@ Input.propTypes = {
   onChange: _propTypes2.default.func,
   disabled: _propTypes2.default.bool,
   value: _propTypes2.default.string,
-  secure: _propTypes2.default.bool
+  secure: _propTypes2.default.bool,
+  inputStyles: _propTypes2.default.object
 };
 
 exports.default = _react2.default.memo(Input);

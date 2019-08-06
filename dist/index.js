@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = require("react");
@@ -18,8 +20,6 @@ var _Input = require("./Input");
 
 var _Input2 = _interopRequireDefault(_Input);
 
-require("./style.css");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var OtpInput = function OtpInput(_ref) {
@@ -32,7 +32,9 @@ var OtpInput = function OtpInput(_ref) {
       otpType = _ref.otpType,
       secure = _ref.secure,
       className = _ref.className,
-      inputClassName = _ref.inputClassName;
+      inputClassName = _ref.inputClassName,
+      inputStyles = _ref.inputStyles,
+      style = _ref.style;
 
   var _useState = (0, _react.useState)(autoFocus ? 0 : -1),
       _useState2 = _slicedToArray(_useState, 2),
@@ -143,6 +145,7 @@ var OtpInput = function OtpInput(_ref) {
     event.target.select();
   };
 
+  // Needs to be memorized
   var renderInputs = function renderInputs() {
     var otp = getOtpValue();
     var inputs = [];
@@ -151,6 +154,7 @@ var OtpInput = function OtpInput(_ref) {
     for (var index = 0; index < OTPLength; index++) {
       inputs.push(_react2.default.createElement(_Input2.default, {
         className: inputClassName,
+        inputStyles: inputStyles,
         key: index,
         focus: activeInput === index,
         value: otp[index],
@@ -172,7 +176,7 @@ var OtpInput = function OtpInput(_ref) {
 
   return _react2.default.createElement(
     "div",
-    { className: "otp__input-root " + className },
+    { style: _extends({ display: "flex" }, style), className: "" + className },
     renderInputs()
   );
 };
@@ -187,7 +191,9 @@ OtpInput.propTypes = {
   autoFocus: _propTypes2.default.bool,
   secure: _propTypes2.default.bool,
   otpType: _propTypes2.default.oneOf(["number", "any"]),
-  value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+  value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  inputStyles: _propTypes2.default.object,
+  style: _propTypes2.default.object
 };
 
 OtpInput.defaultProps = {
@@ -199,7 +205,9 @@ OtpInput.defaultProps = {
   secure: false,
   autoFocus: false,
   value: "",
-  otpType: "any"
+  otpType: "any",
+  inputStyles: {},
+  style: {}
 };
 
 exports.default = OtpInput;
