@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,iBACE,YACF,CAEA,uBACE,UAAW,CACX,WAAY,CACZ,iBAAkB,CAClB,iBACF","file":"main.7578fedb.chunk.css","sourcesContent":[".otp__input-root {\n  display: flex;\n}\n\n.otp__input-root input {\n  width: 32px;\n  height: 32px;\n  text-align: center;\n  margin-right: 20px;\n}\n"]}
