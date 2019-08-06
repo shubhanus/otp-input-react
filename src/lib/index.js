@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Input from "./Input";
-import "./style.css";
 
 const OtpInput = ({
   OTPLength,
@@ -13,7 +12,9 @@ const OtpInput = ({
   otpType,
   secure,
   className,
-  inputClassName
+  inputClassName,
+  inputStyles,
+  style
 }) => {
   const [activeInput, setActiveInput] = useState(autoFocus ? 0 : -1);
 
@@ -117,6 +118,7 @@ const OtpInput = ({
     event.target.select();
   };
 
+  // Needs to be memorized
   const renderInputs = () => {
     const otp = getOtpValue();
     const inputs = [];
@@ -126,6 +128,7 @@ const OtpInput = ({
       inputs.push(
         <Input
           className={inputClassName}
+          inputStyles={inputStyles}
           key={index}
           focus={activeInput === index}
           value={otp[index]}
@@ -146,7 +149,11 @@ const OtpInput = ({
     return inputs;
   };
 
-  return <div className={`otp__input-root ${className}`}>{renderInputs()}</div>;
+  return (
+    <div style={{ display: "flex", ...style }} className={`${className}`}>
+      {renderInputs()}
+    </div>
+  );
 };
 
 OtpInput.propTypes = {
@@ -159,7 +166,9 @@ OtpInput.propTypes = {
   autoFocus: PropTypes.bool,
   secure: PropTypes.bool,
   otpType: PropTypes.oneOf(["number", "any"]),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  inputStyles: PropTypes.object,
+  style: PropTypes.object
 };
 
 OtpInput.defaultProps = {
@@ -171,7 +180,9 @@ OtpInput.defaultProps = {
   secure: false,
   autoFocus: false,
   value: "",
-  otpType: "any"
+  otpType: "any",
+  inputStyles: {},
+  style: {}
 };
 
 export default OtpInput;

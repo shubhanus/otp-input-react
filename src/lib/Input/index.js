@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
+const inputDefaultStyles = {
+  width: 32,
+  height: 32,
+  textAlign: "center",
+  marginRight: 20
+};
+
 /**
  * This is react stateless component
  * Renders an input box
@@ -22,6 +29,7 @@ const Input = ({
   onInputFocus,
   index,
   secure,
+  inputStyles,
   ...rest
 }) => {
   const input = useRef(null);
@@ -47,6 +55,7 @@ const Input = ({
 
   return (
     <input
+      style={{ ...inputDefaultStyles, ...inputStyles }}
       type={secure ? "password" : "tel"}
       maxLength="1"
       ref={input}
@@ -66,7 +75,8 @@ Input.propTypes = {
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   value: PropTypes.string,
-  secure: PropTypes.bool
+  secure: PropTypes.bool,
+  inputStyles: PropTypes.object
 };
 
 export default React.memo(Input);

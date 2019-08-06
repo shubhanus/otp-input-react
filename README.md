@@ -117,9 +117,23 @@ function App() {
     <td>Class for root element.</td>
     <td>Working</td>
   </tr>  
+  <tr>
+    <td>inputStyles</td>
+    <td>Object</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Styles for input element.</td>
+    <td>Working</td>
+  </tr>  
+  <tr>
+    <td>style</td>
+    <td>Object</td>
+    <td>-</td>
+    <td>-</td>
+    <td>Styles for root element.</td>
+    <td>Working</td>
+  </tr>  
 </table>
-
-
 
 ### Contributing
 

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import OTPInput from "./lib";
-import "./style.css";
 
 const OtpInputCard = ({ title, ...rest }) => {
   const [OTP, setOTP] = useState("");
   return (
-    <div className="input__card-wrapper">
+    <div
+      style={{
+        padding: 12
+      }}
+    >
       <div style={{ marginBottom: 12 }}>{title}</div>
       <OTPInput value={OTP} onChange={setOTP} {...rest} />
     </div>
@@ -14,7 +17,13 @@ const OtpInputCard = ({ title, ...rest }) => {
 
 function App() {
   return (
-    <div className="flex__center">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column"
+      }}
+    >
       <h2>OTP Input React</h2>
       <div>
         <OtpInputCard
@@ -58,12 +67,16 @@ function App() {
           // secure
         />
         <OtpInputCard
-          title="Input styling with inputClassName"
+          title="Input styling with inputStyles prop"
           inputClassName="bottom__border"
           // autoFocus
           OTPLength={3}
           otpType="any"
           disabled={false}
+          inputStyles={{
+            border: 0,
+            borderBottom: "1px solid #cbcbcb"
+          }}
           // secure
         />
       </div>
