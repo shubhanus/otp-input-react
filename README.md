@@ -5,21 +5,17 @@ A fully customizable, one-time password input component for the web built with R
 ![NPM](https://img.shields.io/npm/l/otp-input-react?style=flat-square)
 [![npm](https://img.shields.io/npm/v/otp-input-react?style=flat-square)](https://badge.fury.io/js/otp-input-react)
 
-![GIPHY](https://media.giphy.com/media/9JiszPVOX5FuPfJm39/giphy.gif)
-
-![GIPHY](https://media.giphy.com/media/da1TEJz9E7xbk5VSsU/giphy.gif)
+[![GIPHY](https://media.giphy.com/media/kbbmyfMT282BIPe8Yq/giphy.gif)](https://shubhanus.github.io/otp-input-react/)
 
 ### [Working Demo](https://shubhanus.github.io/otp-input-react/)
 
 ## Installation
 
-To install the latest stable version:
-
 ```
 npm install --save otp-input-react
 ```
 
-Basic usage:
+## Usage:
 
 ```javascript
 function App() {
@@ -106,19 +102,31 @@ function App() {
     <td>Working</td>
   </tr>  
   <tr>
-    <td>inputClass</td>
+    <td>inputClassName</td>
     <td>String</td>
     <td>-</td>
     <td>-</td>
-    <td>Add class to input tag.</td>
-    <td>TODO</td>
+    <td>Class for root element.</td>
+    <td>Working</td>
   </tr>  
   <tr>
-    <td>rootClass</td>
+    <td>className</td>
     <td>String</td>
     <td>-</td>
     <td>-</td>
-    <td>Add class to Root Div.</td>
-    <td>TODO</td>
+    <td>Class for root element.</td>
+    <td>Working</td>
   </tr>  
 </table>
+
+
+
+### Contributing
+
+Feel Free to contributing or feture request
+
+1. Fork it ( https://github.com/shubhanus/otp-input-react/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new pull request.

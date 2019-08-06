@@ -25,14 +25,21 @@ const Input = ({
   ...rest
 }) => {
   const input = useRef(null);
-
+  const componentMounted = useRef(false);
   useEffect(() => {
-    // Focus on first render
-    // Only when autoFocus is true
-    // Prevent calling function if input already in focus
-    if (autoFocus && input && focus) {
+    // When component mounts
+    if (autoFocus && focus) {
       input.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // When component focus updates
+    if (componentMounted.current && focus) {
+      input.current.focus();
+    }
+    componentMounted.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 

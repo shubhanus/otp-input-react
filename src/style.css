@@ -1,0 +1,19 @@
+.flex__center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input__card-wrapper {
+  padding: 12px;
+}
+
+.bottom__border {
+  border: 0;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.bottom__border:focus {
+  outline: none;
+  border-bottom-color: #212121;
+}

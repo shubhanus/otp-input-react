@@ -4,12 +4,6 @@ import PropTypes from "prop-types";
 import Input from "./Input";
 import "./style.css";
 
-// Doesn't really check if it's a style Object
-// Basic implemenetation to check if it's not a string
-// of classNames and is an Object
-// TODO: Better implementation
-export const isStyleObject = obj => typeof obj === "object";
-
 const OtpInput = ({
   OTPLength,
   disabled,
@@ -17,9 +11,11 @@ const OtpInput = ({
   value = "",
   onChange,
   otpType,
-  secure
+  secure,
+  className,
+  inputClassName
 }) => {
-  const [activeInput, setActiveInput] = useState(0);
+  const [activeInput, setActiveInput] = useState(autoFocus ? 0 : -1);
 
   const getOtpValue = () => (value ? value.toString().split("") : []);
 
@@ -129,6 +125,7 @@ const OtpInput = ({
     for (let index = 0; index < OTPLength; index++) {
       inputs.push(
         <Input
+          className={inputClassName}
           key={index}
           focus={activeInput === index}
           value={otp[index]}
@@ -149,10 +146,12 @@ const OtpInput = ({
     return inputs;
   };
 
-  return <div className="otp__input-root">{renderInputs()}</div>;
+  return <div className={`otp__input-root ${className}`}>{renderInputs()}</div>;
 };
 
 OtpInput.propTypes = {
+  className: PropTypes.string,
+  inputClassName: PropTypes.string,
   OTPLength: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   containerStyle: PropTypes.object,
@@ -164,11 +163,13 @@ OtpInput.propTypes = {
 };
 
 OtpInput.defaultProps = {
+  className: "",
+  inputClassName: "",
   OTPLength: 4,
   onChange: () => {},
   disabled: false,
   secure: false,
-  autoFocus: true,
+  autoFocus: false,
   value: "",
   otpType: "any"
 };
