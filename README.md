@@ -1,4 +1,4 @@
-# react-otp-input
+# otp-input-react
 
 A fully customizable, one-time password input component for the web built with React functional component.
 
