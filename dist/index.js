@@ -3,11 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isStyleObject = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _react = require("react");
 
@@ -25,14 +22,6 @@ require("./style.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Doesn't really check if it's a style Object
-// Basic implemenetation to check if it's not a string
-// of classNames and is an Object
-// TODO: Better implementation
-var isStyleObject = exports.isStyleObject = function isStyleObject(obj) {
-  return (typeof obj === "undefined" ? "undefined" : _typeof(obj)) === "object";
-};
-
 var OtpInput = function OtpInput(_ref) {
   var OTPLength = _ref.OTPLength,
       disabled = _ref.disabled,
@@ -41,9 +30,11 @@ var OtpInput = function OtpInput(_ref) {
       value = _ref$value === undefined ? "" : _ref$value,
       onChange = _ref.onChange,
       otpType = _ref.otpType,
-      secure = _ref.secure;
+      secure = _ref.secure,
+      className = _ref.className,
+      inputClassName = _ref.inputClassName;
 
-  var _useState = (0, _react.useState)(0),
+  var _useState = (0, _react.useState)(autoFocus ? 0 : -1),
       _useState2 = _slicedToArray(_useState, 2),
       activeInput = _useState2[0],
       setActiveInput = _useState2[1];
@@ -159,6 +150,7 @@ var OtpInput = function OtpInput(_ref) {
     // eslint-disable-next-line no-plusplus
     for (var index = 0; index < OTPLength; index++) {
       inputs.push(_react2.default.createElement(_Input2.default, {
+        className: inputClassName,
         key: index,
         focus: activeInput === index,
         value: otp[index],
@@ -180,12 +172,14 @@ var OtpInput = function OtpInput(_ref) {
 
   return _react2.default.createElement(
     "div",
-    { className: "otp__input-root" },
+    { className: "otp__input-root " + className },
     renderInputs()
   );
 };
 
 OtpInput.propTypes = {
+  className: _propTypes2.default.string,
+  inputClassName: _propTypes2.default.string,
   OTPLength: _propTypes2.default.number,
   onChange: _propTypes2.default.func.isRequired,
   containerStyle: _propTypes2.default.object,
@@ -197,11 +191,13 @@ OtpInput.propTypes = {
 };
 
 OtpInput.defaultProps = {
+  className: "",
+  inputClassName: "",
   OTPLength: 4,
   onChange: function onChange() {},
   disabled: false,
   secure: false,
-  autoFocus: true,
+  autoFocus: false,
   value: "",
   otpType: "any"
 };

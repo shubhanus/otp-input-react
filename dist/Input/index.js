@@ -42,14 +42,21 @@ var Input = function Input(_ref) {
       rest = _objectWithoutProperties(_ref, ["focus", "autoFocus", "disabled", "value", "onInputFocus", "index", "secure"]);
 
   var input = (0, _react.useRef)(null);
-
+  var componentMounted = (0, _react.useRef)(false);
   (0, _react.useEffect)(function () {
-    // Focus on first render
-    // Only when autoFocus is true
-    // Prevent calling function if input already in focus
-    if (autoFocus && input && focus) {
+    // When component mounts
+    if (autoFocus && focus) {
       input.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  (0, _react.useEffect)(function () {
+    // When component focus updates
+    if (componentMounted.current && focus) {
+      input.current.focus();
+    }
+    componentMounted.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 
