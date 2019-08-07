@@ -142,6 +142,7 @@ const OtpInput = ({
           disabled={disabled}
           autoFocus={autoFocus}
           secure={secure}
+          data-testid="input"
         />
       );
     }
@@ -150,7 +151,11 @@ const OtpInput = ({
   };
 
   return (
-    <div style={{ display: "flex", ...style }} className={`${className}`}>
+    <div
+      style={{ display: "flex", ...style }}
+      className={`${className}`}
+      data-testid="otp-input-root"
+    >
       {renderInputs()}
     </div>
   );
@@ -161,7 +166,6 @@ OtpInput.propTypes = {
   inputClassName: PropTypes.string,
   OTPLength: PropTypes.number,
   onChange: PropTypes.func.isRequired,
-  containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
   secure: PropTypes.bool,
