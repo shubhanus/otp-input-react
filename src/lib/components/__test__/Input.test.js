@@ -1,5 +1,5 @@
 import React from "react";
-import Input from ".";
+import Input from "../Input";
 import { render, fireEvent, wait } from "@testing-library/react";
 
 const inputSetup = props => {

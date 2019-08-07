@@ -1,5 +1,5 @@
 import React from "react";
-import OTPInput from ".";
+import OTPInput from "../OTPReader";
 import { render, fireEvent } from "@testing-library/react";
 
 const inputSetup = (props = {}) => {
