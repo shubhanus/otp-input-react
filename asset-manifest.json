@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/otp-input-react/static/css/main.dbfa081a.chunk.css",
-    "main.js": "/otp-input-react/static/js/main.c0049ec4.chunk.js",
-    "main.js.map": "/otp-input-react/static/js/main.c0049ec4.chunk.js.map",
+    "main.js": "/otp-input-react/static/js/main.940304f4.chunk.js",
+    "main.js.map": "/otp-input-react/static/js/main.940304f4.chunk.js.map",
     "runtime~main.js": "/otp-input-react/static/js/runtime~main.83e8a476.js",
     "runtime~main.js.map": "/otp-input-react/static/js/runtime~main.83e8a476.js.map",
-    "static/js/2.68777c6a.chunk.js": "/otp-input-react/static/js/2.68777c6a.chunk.js",
-    "static/js/2.68777c6a.chunk.js.map": "/otp-input-react/static/js/2.68777c6a.chunk.js.map",
+    "static/js/2.0f087ebd.chunk.js": "/otp-input-react/static/js/2.0f087ebd.chunk.js",
+    "static/js/2.0f087ebd.chunk.js.map": "/otp-input-react/static/js/2.0f087ebd.chunk.js.map",
     "index.html": "/otp-input-react/index.html",
-    "precache-manifest.9c58f903f57cb8cfbfc9e6b21742a4ee.js": "/otp-input-react/precache-manifest.9c58f903f57cb8cfbfc9e6b21742a4ee.js",
-    "service-worker.js": "/otp-input-react/service-worker.js",
-    "static/css/main.dbfa081a.chunk.css.map": "/otp-input-react/static/css/main.dbfa081a.chunk.css.map"
+    "precache-manifest.2317c1e93f2fedc4ff45cbd6d928679a.js": "/otp-input-react/precache-manifest.2317c1e93f2fedc4ff45cbd6d928679a.js",
+    "service-worker.js": "/otp-input-react/service-worker.js"
   }
 }
