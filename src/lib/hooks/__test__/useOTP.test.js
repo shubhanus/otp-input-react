@@ -65,7 +65,7 @@ it("handleOnChange should not change active input when otpType=number and value 
 
 it(`handleOnChange should change active input when otpType=number 
     and value is number and change focus, 
-    also call on change function that return number type value`, () => {
+    also call on change function that return string type value`, () => {
   let value = "";
   const onChange = jest.fn(e => {
     value = e;
@@ -80,7 +80,7 @@ it(`handleOnChange should change active input when otpType=number
     })
   );
   act(() => {
-    result.current.handleOnChange({ target: { value: "1" } });
+    result.current.handleOnChange({ target: { value: "0" } });
     rerender();
   });
   act(() => {
@@ -90,7 +90,7 @@ it(`handleOnChange should change active input when otpType=number
   expect(onChange).toHaveBeenCalledTimes(2);
   expect(onChange).toHaveReturnedTimes(2);
   expect(result.current.activeInput).toBe(2);
-  expect(value).toBe(12);
+  expect(value).toBe("02");
 });
 
 it(`handleOnChange should change active input when otpType=any 

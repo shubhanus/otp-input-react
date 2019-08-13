@@ -8,9 +8,9 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
   // Helper to return OTP from input
   const handleOtpChange = otp => {
     let otpValue = otp.join("");
-    if (otpType === "number") {
-      otpValue = +otpValue;
-    }
+    // if (otpType === "number") {
+    //   otpValue = +otpValue;
+    // }
     onChange(otpValue);
   };
 
