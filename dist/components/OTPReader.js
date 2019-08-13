@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
@@ -19,6 +17,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 var _Input = require("./Input");
 
 var _Input2 = _interopRequireDefault(_Input);
+
+var _useOTP2 = require("../hooks/useOTP");
+
+var _useOTP3 = _interopRequireDefault(_useOTP2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36,117 +38,25 @@ var OtpInput = function OtpInput(_ref) {
       inputStyles = _ref.inputStyles,
       style = _ref.style;
 
-  var _useState = (0, _react.useState)(autoFocus ? 0 : -1),
-      _useState2 = _slicedToArray(_useState, 2),
-      activeInput = _useState2[0],
-      setActiveInput = _useState2[1];
-
-  var getOtpValue = function getOtpValue() {
-    return value ? value.toString().split("") : [];
-  };
-
-  // Helper to return OTP from input
-  var handleOtpChange = function handleOtpChange(otp) {
-    var otpValue = otp.join("");
-    if (otpType === "number") {
-      otpValue = +otpValue;
-    }
-    onChange(otpValue);
-  };
-
-  // Focus on input by index
-  var focusInput = function focusInput(input) {
-    var nextActiveInput = Math.max(Math.min(OTPLength - 1, input), 0);
-    setActiveInput(nextActiveInput);
-  };
-
-  /**
-   * @typedef {"next" | "prev"} FocusDirections
-   * @param {FocusDirections} direction
-   */
-  var focusInputByDirection = function focusInputByDirection() {
-    var direction = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "next";
-
-    focusInput(direction === "next" ? activeInput + 1 : activeInput - 1);
-  };
-
-  // Change OTP value at focused input
-  var changeActiveInputValue = function changeActiveInputValue(_ref2) {
-    var _ref3 = _slicedToArray(_ref2, 1),
-        nextValue = _ref3[0];
-
-    var otp = getOtpValue();
-    otp[activeInput] = nextValue;
-    handleOtpChange(otp);
-  };
-
-  // Handle pasted OTP
-  var handleOnPaste = function handleOnPaste(e) {
-    e.preventDefault();
-    var otp = getOtpValue();
-
-    // Get pastedData in an array of max size (num of inputs - current position)
-    var clipboardData = e.clipboardData.getData("text/plain").slice(0, OTPLength - activeInput).split("");
-
-    // Paste data from focused input onwards
-    // eslint-disable-next-line no-plusplus
-    for (var pos = 0; pos < OTPLength; ++pos) {
-      if (pos >= activeInput && clipboardData.length > 0) {
-        otp[pos] = clipboardData.shift();
-      }
-    }
-
-    handleOtpChange(otp);
-  };
-
-  var handleOnChange = function handleOnChange(e) {
-    if (otpType === "number" && Number.isNaN(Number(e.target.value))) {
-      // preventing number other then number inputs
-      return;
-    }
-    changeActiveInputValue(e.target.value);
-    focusInputByDirection("next");
-  };
-
-  // Handle cases of backspace, delete, left arrow, right arrow
-  var handleOnKeyDown = function handleOnKeyDown(e) {
-    switch (e.key) {
-      case "Backspace":
-        e.preventDefault();
-        changeActiveInputValue("");
-        focusInputByDirection("prev");
-        break;
-      case "Delete":
-        e.preventDefault();
-        changeActiveInputValue("");
-        break;
-      case "ArrowLeft":
-        e.preventDefault();
-        focusInputByDirection("prev");
-        break;
-      case "ArrowRight":
-        e.preventDefault();
-        focusInputByDirection("next");
-        break;
-      default:
-        break;
-    }
-  };
-
-  var handelOnInput = function handelOnInput(e) {
-    if (e.target.value.length > 1) {
-      e.preventDefault();
-      focusInputByDirection("next");
-    }
-  };
-
-  var onInputFocus = function onInputFocus(index, event) {
-    setActiveInput(index);
-    event.target.select();
-  };
+  var _useOTP = (0, _useOTP3.default)({
+    autoFocus: autoFocus,
+    value: value,
+    otpType: otpType,
+    onChange: onChange,
+    OTPLength: OTPLength
+  }),
+      activeInput = _useOTP.activeInput,
+      getOtpValue = _useOTP.getOtpValue,
+      handleOnChange = _useOTP.handleOnChange,
+      handleOnKeyDown = _useOTP.handleOnKeyDown,
+      handelOnInput = _useOTP.handelOnInput,
+      handleOnPaste = _useOTP.handleOnPaste,
+      onInputFocus = _useOTP.onInputFocus;
 
   // Needs to be memorized
-  var renderInputs = function renderInputs() {
+
+
+  var renderInputs = (0, _react.useMemo)(function () {
     var otp = getOtpValue();
     var inputs = [];
 
@@ -173,7 +83,7 @@ var OtpInput = function OtpInput(_ref) {
     }
 
     return inputs;
-  };
+  }, [getOtpValue, OTPLength, inputClassName, inputStyles, activeInput, handleOnChange, handleOnKeyDown, handelOnInput, handleOnPaste, onInputFocus, disabled, autoFocus, secure]);
 
   return _react2.default.createElement(
     "div",
@@ -182,7 +92,7 @@ var OtpInput = function OtpInput(_ref) {
       className: "" + className,
       "data-testid": "otp-input-root"
     },
-    renderInputs()
+    renderInputs
   );
 };
 
