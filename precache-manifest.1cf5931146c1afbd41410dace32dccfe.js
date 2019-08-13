@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "152a2709d28130d56483d4c25e585224",
+    "revision": "c01f6d05bc6a6a6ddb9b14fca22cc898",
     "url": "/otp-input-react/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/otp-input-react/static/js/2.0f087ebd.chunk.js"
   },
   {
-    "revision": "68a19eaf47ff5dd53776",
-    "url": "/otp-input-react/static/js/main.940304f4.chunk.js"
+    "revision": "b5723b0656b899d7d7b1",
+    "url": "/otp-input-react/static/js/main.93646d4a.chunk.js"
   },
   {
     "revision": "bc9472fbfb0ac030eb64",
