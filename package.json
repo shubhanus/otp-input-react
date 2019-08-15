@@ -1,9 +1,17 @@
 {
   "name": "otp-input-react",
+  "keywords": [
+    "react",
+    "otp",
+    "otp-input",
+    "react-otp",
+    "react-otp-input",
+    "multi input otp"
+  ],
   "homepage": "https://shubhanus.github.io/otp-input-react",
   "author": "shubhanu sharma",
   "description": "React functional component for otp input",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
