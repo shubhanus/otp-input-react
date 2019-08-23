@@ -1,5 +1,12 @@
 import { useState } from "react";
 
+const LOWER_A_KEYCODE = 97;
+const UPPER_A_KEYCODE = 65;
+const LOWER_Z_KEYCODE = 122;
+const UPPER_Z_KEYCODE = 90;
+const ZERO_KEYCODE = 48;
+const NINE_KEYCODE = 57;
+
 const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
   const [activeInput, setActiveInput] = useState(autoFocus ? 0 : -1);
 
@@ -61,10 +68,18 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
   };
 
   const handleOnChange = e => {
-    if (otpType === "number" && Number.isNaN(Number(e.target.value))) {
-      // preventing number other then number inputs
+    console.log('code', e.target.value.charCodeAt(0));
+
+    if (otpType === "number" && (e.target.value.charCodeAt(0) > NINE_KEYCODE || e.target.value.charCodeAt(0) < ZERO_KEYCODE)) {
+      // prevent keychars outside of numeric range
+      return;
+    } else if (otpType === "alpha" && (e.target.value.charCodeAt(0) > LOWER_Z_KEYCODE || e.target.value.charCodeAt(0) < UPPER_A_KEYCODE)) {
+      // prevent keychars outside of alpha range
+      return;
+    } else if (otpType === "alphanumeric" && (e.target.value.charCodeAt(0) > LOWER_Z_KEYCODE || e.target.value.charCodeAt(0) < ZERO_KEYCODE)) {
       return;
     }
+
     changeActiveInputValue(e.target.value);
     focusInputByDirection("next");
   };

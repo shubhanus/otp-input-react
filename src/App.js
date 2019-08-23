@@ -43,6 +43,22 @@ function App() {
           // secure
         />
         <OtpInputCard
+          title="alpha"
+          // autoFocus
+          OTPLength={4}
+          otpType="alpha"
+          disabled={false}
+          // secure
+        />
+        <OtpInputCard
+          title="alphanumeric"
+          // autoFocus
+          OTPLength={4}
+          otpType="alphanumeric"
+          disabled={false}
+          // secure
+        />
+        <OtpInputCard
           title="Any character input"
           // autoFocus
           OTPLength={4}

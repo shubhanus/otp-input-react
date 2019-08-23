@@ -98,7 +98,7 @@ OtpInput.propTypes = {
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
   secure: PropTypes.bool,
-  otpType: PropTypes.oneOf(["number", "any"]),
+  otpType: PropTypes.oneOf(["number", "alpha", "alphanumeric", "any"]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   inputStyles: PropTypes.object,
   style: PropTypes.object
