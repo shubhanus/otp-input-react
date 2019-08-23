@@ -43,7 +43,7 @@ function App() {
 | value | string / number | **true** | '' | The value of the otp passed into the component. | Working |
 | disabled | boolean | false | false | Disables all the inputs. | Working |
 | autoFocus | boolean | false | false | Auto focuses input on inital page load. | Working |
-| otpType | Enum: (`any\|number\|alpha\|alphanumeric`)  | false | any | (`any`) - allows any value. (`number`) - allow only numbers. alpha - allows only (`a-zA-Z`). alphanumeric - allows (`0-9a-zA-z`) | Working |
+| otpType | Enum: `any\|number\|alpha\|alphanumeric`  | false | any | `any` - allows any value. `number` - allow only numbers. `alpha` - allows only `a-zA-Z`. `alphanumeric` - allows `0-9a-zA-z` | Working |
 | secure | Boolean | false | false | Change input type to password. | Working |
 | inputClassName | String | - | - | Class for root element. | Working |
 | className | String | - | - | Class for root element. | Working |
