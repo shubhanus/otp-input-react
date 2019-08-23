@@ -78,8 +78,6 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
   };
 
   const isValidateChar = char => {
-    console.log('otpType', otpType);
-
     switch (otpType) {
       case "number":
         return !(char.charCodeAt(0) > NINE_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
