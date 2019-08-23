@@ -64,24 +64,39 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
       }
     }
 
-    handleOtpChange(otp);
-  };
-
-  const handleOnChange = e => {
-    console.log('code', e.target.value.charCodeAt(0));
-
-    if (otpType === "number" && (e.target.value.charCodeAt(0) > NINE_KEYCODE || e.target.value.charCodeAt(0) < ZERO_KEYCODE)) {
-      // prevent keychars outside of numeric range
-      return;
-    } else if (otpType === "alpha" && (e.target.value.charCodeAt(0) > LOWER_Z_KEYCODE || e.target.value.charCodeAt(0) < UPPER_A_KEYCODE)) {
-      // prevent keychars outside of alpha range
-      return;
-    } else if (otpType === "alphanumeric" && (e.target.value.charCodeAt(0) > LOWER_Z_KEYCODE || e.target.value.charCodeAt(0) < ZERO_KEYCODE)) {
-      return;
+    // Pass copied value through onChange rules
+    let filteredOtpValue = [otp.length];
+    let validCharIndex = 0;
+    for (let charIndex = 0; charIndex < otp.length; ++charIndex) {
+      if (isValidateChar(otp[charIndex])) {
+        filteredOtpValue[validCharIndex] = (otp[charIndex]);
+        validCharIndex++;
+      }
     }
 
-    changeActiveInputValue(e.target.value);
-    focusInputByDirection("next");
+    handleOtpChange(filteredOtpValue);
+  };
+
+  const isValidateChar = char => {
+    console.log('otpType', otpType);
+
+    switch (otpType) {
+      case "number":
+        return !(char.charCodeAt(0) > NINE_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+      case "alpha":
+        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < UPPER_A_KEYCODE);
+      case "alphanumeric":
+        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+      default:
+        return true;
+    }
+  }
+
+  const handleOnChange = e => {
+    if (isValidateChar(e.target.value)) {
+      changeActiveInputValue(e.target.value);
+      focusInputByDirection("next");
+    }
   };
 
   // Handle cases of backspace, delete, left arrow, right arrow
