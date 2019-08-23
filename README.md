@@ -68,7 +68,7 @@ function App() {
     <td>''</td>
     <td>The value of the otp passed into the component.</td>
     <td>Working</td>
-  </tr>      
+  </tr>
   <tr>
     <td>disabled</td>
     <td>boolean</td>
@@ -76,7 +76,7 @@ function App() {
     <td>false</td>
     <td>Disables all the inputs.</td>
     <td>Working</td>
-  </tr>    
+  </tr>
   <tr>
     <td>autoFocus</td>
     <td>boolean</td>
@@ -87,10 +87,10 @@ function App() {
   </tr>
   <tr>
     <td>otpType</td>
-    <td>Enum: any|number </td>
+    <td>Enum: any|number|alpha|alphanumeric </td>
     <td>false</td>
     <td>any</td>
-    <td>any - allows any value. number - allow only numbers.</td>
+    <td>`any` - allows any value. `number` - allow only numbers. alpha - allows only `a-zA-Z`. alphanumeric - allows `0-9a-zA-z`</td>
     <td>Working</td>
   </tr>
   <tr>
@@ -100,7 +100,7 @@ function App() {
     <td>false</td>
     <td>Change input type to password.</td>
     <td>Working</td>
-  </tr>  
+  </tr>
   <tr>
     <td>inputClassName</td>
     <td>String</td>
@@ -108,7 +108,7 @@ function App() {
     <td>-</td>
     <td>Class for root element.</td>
     <td>Working</td>
-  </tr>  
+  </tr>
   <tr>
     <td>className</td>
     <td>String</td>
@@ -116,7 +116,7 @@ function App() {
     <td>-</td>
     <td>Class for root element.</td>
     <td>Working</td>
-  </tr>  
+  </tr>
   <tr>
     <td>inputStyles</td>
     <td>Object</td>
@@ -124,7 +124,7 @@ function App() {
     <td>-</td>
     <td>Styles for input element.</td>
     <td>Working</td>
-  </tr>  
+  </tr>
   <tr>
     <td>style</td>
     <td>Object</td>
@@ -132,7 +132,7 @@ function App() {
     <td>-</td>
     <td>Styles for root element.</td>
     <td>Working</td>
-  </tr>  
+  </tr>
 </table>
 
 ### Contributing
