@@ -176,7 +176,7 @@ test("should disable inputs and wont focus", _asyncToGenerator( /*#__PURE__*/reg
   }, _callee5, undefined);
 })));
 
-test("should only take numbers when otpType is number ", _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+test("should prevent non-numeric when otpType is number ", _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
   var value, onChange, props, _inputSetup7, rerender, getAllByTestId, allInp;
 
   return regeneratorRuntime.wrap(function _callee6$(_context6) {
@@ -210,4 +210,76 @@ test("should only take numbers when otpType is number ", _asyncToGenerator( /*#_
       }
     }
   }, _callee6, undefined);
+})));
+
+test("should prevent numbers when otpType is alpha ", _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+  var value, onChange, props, _inputSetup8, rerender, getAllByTestId, allInp;
+
+  return regeneratorRuntime.wrap(function _callee7$(_context7) {
+    while (1) {
+      switch (_context7.prev = _context7.next) {
+        case 0:
+          value = "";
+          onChange = jest.fn(function (e) {
+            value = e;
+          });
+          props = {
+            onChange: onChange,
+            value: value,
+            autoFocus: true,
+            otpType: "alpha"
+          };
+          _inputSetup8 = inputSetup(props), rerender = _inputSetup8.rerender, getAllByTestId = _inputSetup8.getAllByTestId;
+          allInp = getAllByTestId("input");
+
+          _react3.fireEvent.change(allInp[0], { target: { value: "3" } });
+          _context7.next = 8;
+          return rerender(_react2.default.createElement(_OTPReader2.default, _extends({}, props, { value: value })));
+
+        case 8:
+          expect(allInp[0].value).toBe("");
+          expect(onChange).toBeCalledTimes(0);
+
+        case 10:
+        case "end":
+          return _context7.stop();
+      }
+    }
+  }, _callee7, undefined);
+})));
+
+test("should prevent non-alpha when otpType is alphanumeric", _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+  var value, onChange, props, _inputSetup9, rerender, getAllByTestId, allInp;
+
+  return regeneratorRuntime.wrap(function _callee8$(_context8) {
+    while (1) {
+      switch (_context8.prev = _context8.next) {
+        case 0:
+          value = "";
+          onChange = jest.fn(function (e) {
+            value = e;
+          });
+          props = {
+            onChange: onChange,
+            value: value,
+            autoFocus: true,
+            otpType: "alpha"
+          };
+          _inputSetup9 = inputSetup(props), rerender = _inputSetup9.rerender, getAllByTestId = _inputSetup9.getAllByTestId;
+          allInp = getAllByTestId("input");
+
+          _react3.fireEvent.change(allInp[0], { target: { value: "#" } });
+          _context8.next = 8;
+          return rerender(_react2.default.createElement(_OTPReader2.default, _extends({}, props, { value: value })));
+
+        case 8:
+          expect(allInp[0].value).toBe("");
+          expect(onChange).toBeCalledTimes(0);
+
+        case 10:
+        case "end":
+          return _context8.stop();
+      }
+    }
+  }, _callee8, undefined);
 })));

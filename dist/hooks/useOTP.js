@@ -8,6 +8,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _react = require("react");
 
+var LOWER_A_KEYCODE = 97;
+var UPPER_A_KEYCODE = 65;
+var LOWER_Z_KEYCODE = 122;
+var UPPER_Z_KEYCODE = 90;
+var ZERO_KEYCODE = 48;
+var NINE_KEYCODE = 57;
+
 var useOTP = function useOTP(_ref) {
   var autoFocus = _ref.autoFocus,
       value = _ref.value,
@@ -75,16 +82,37 @@ var useOTP = function useOTP(_ref) {
       }
     }
 
-    handleOtpChange(otp);
+    // Pass copied value through onChange rules
+    var filteredOtpValue = [otp.length];
+    var validCharIndex = 0;
+    for (var charIndex = 0; charIndex < otp.length; ++charIndex) {
+      if (isValidateChar(otp[charIndex])) {
+        filteredOtpValue[validCharIndex] = otp[charIndex];
+        validCharIndex++;
+      }
+    }
+
+    handleOtpChange(filteredOtpValue);
+  };
+
+  var isValidateChar = function isValidateChar(char) {
+    switch (otpType) {
+      case "number":
+        return !(char.charCodeAt(0) > NINE_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+      case "alpha":
+        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < UPPER_A_KEYCODE);
+      case "alphanumeric":
+        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+      default:
+        return true;
+    }
   };
 
   var handleOnChange = function handleOnChange(e) {
-    if (otpType === "number" && Number.isNaN(Number(e.target.value))) {
-      // preventing number other then number inputs
-      return;
+    if (isValidateChar(e.target.value)) {
+      changeActiveInputValue(e.target.value);
+      focusInputByDirection("next");
     }
-    changeActiveInputValue(e.target.value);
-    focusInputByDirection("next");
   };
 
   // Handle cases of backspace, delete, left arrow, right arrow
