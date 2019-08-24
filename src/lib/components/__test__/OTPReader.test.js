@@ -121,7 +121,7 @@ test("should disable inputs and wont focus", async () => {
   expect(document.activeElement).not.toBe(allInp[0]);
 });
 
-test("should only take numbers when otpType is number ", async () => {
+test("should prevent non-numeric when otpType is number ", async () => {
   let value = "";
   const onChange = jest.fn(e => {
     value = e;
@@ -139,3 +139,42 @@ test("should only take numbers when otpType is number ", async () => {
   expect(allInp[0].value).toBe("");
   expect(onChange).toBeCalledTimes(0);
 });
+
+test("should prevent numbers when otpType is alpha ", async () => {
+  let value = "";
+  const onChange = jest.fn(e => {
+    value = e;
+  });
+  const props = {
+    onChange,
+    value,
+    autoFocus: true,
+    otpType: "alpha"
+  };
+  const { rerender, getAllByTestId } = inputSetup(props);
+  const allInp = getAllByTestId("input");
+  fireEvent.change(allInp[0], { target: { value: "3" } });
+  await rerender(<OTPInput {...props} value={value} />);
+  expect(allInp[0].value).toBe("");
+  expect(onChange).toBeCalledTimes(0);
+});
+
+test("should prevent non-alpha when otpType is alphanumeric", async () => {
+  let value = "";
+  const onChange = jest.fn(e => {
+    value = e;
+  });
+  const props = {
+    onChange,
+    value,
+    autoFocus: true,
+    otpType: "alpha"
+  };
+  const { rerender, getAllByTestId } = inputSetup(props);
+  const allInp = getAllByTestId("input");
+  fireEvent.change(allInp[0], { target: { value: "#" } });
+  await rerender(<OTPInput {...props} value={value} />);
+  expect(allInp[0].value).toBe("");
+  expect(onChange).toBeCalledTimes(0);
+});
+

@@ -1,5 +1,12 @@
 import { useState } from "react";
 
+const LOWER_A_KEYCODE = 97;
+const UPPER_A_KEYCODE = 65;
+const LOWER_Z_KEYCODE = 122;
+const UPPER_Z_KEYCODE = 90;
+const ZERO_KEYCODE = 48;
+const NINE_KEYCODE = 57;
+
 const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
   const [activeInput, setActiveInput] = useState(autoFocus ? 0 : -1);
 
@@ -57,16 +64,37 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
       }
     }
 
-    handleOtpChange(otp);
+    // Pass copied value through onChange rules
+    let filteredOtpValue = [otp.length];
+    let validCharIndex = 0;
+    for (let charIndex = 0; charIndex < otp.length; ++charIndex) {
+      if (isValidateChar(otp[charIndex])) {
+        filteredOtpValue[validCharIndex] = (otp[charIndex]);
+        validCharIndex++;
+      }
+    }
+
+    handleOtpChange(filteredOtpValue);
   };
 
-  const handleOnChange = e => {
-    if (otpType === "number" && Number.isNaN(Number(e.target.value))) {
-      // preventing number other then number inputs
-      return;
+  const isValidateChar = char => {
+    switch (otpType) {
+      case "number":
+        return !(char.charCodeAt(0) > NINE_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+      case "alpha":
+        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < UPPER_A_KEYCODE);
+      case "alphanumeric":
+        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+      default:
+        return true;
     }
-    changeActiveInputValue(e.target.value);
-    focusInputByDirection("next");
+  }
+
+  const handleOnChange = e => {
+    if (isValidateChar(e.target.value)) {
+      changeActiveInputValue(e.target.value);
+      focusInputByDirection("next");
+    }
   };
 
   // Handle cases of backspace, delete, left arrow, right arrow
