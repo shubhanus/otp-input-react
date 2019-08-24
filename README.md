@@ -50,12 +50,25 @@ function App() {
 | inputStyles | Object | - | - | Styles for input element. | Working |
 | style | Object | - | - | Styles for root element. | Working |
 
+### TODO
+- [x] Add other type input
+- [] Change scaffolding 
+- [] Add CI
+- [] Add OTP Timer with resend otp optional type
+
+### Credits
+https://github.com/hotdang-ca - For adding `alpha|alphanumeric`	type and updating docs
+
 ### Contributing
 
-Feel Free to contributing or feture request
+Feel Free to contributing or feature request
 
 1. Fork it ( https://github.com/shubhanus/otp-input-react/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new pull request.
+
+
+
+
