@@ -3,6 +3,11 @@
 A fully customizable, one-time password input with resend OTP component for the web built with React functional component.
 
 ![NPM](https://img.shields.io/npm/l/otp-input-react?style=flat-square)
+
+[![Build Status](https://travis-ci.org/shubhanus/otp-input-react.svg?branch=master)](https://travis-ci.org/shubhanus/otp-input-react)
+
+[![Coverage Status](https://coveralls.io/repos/github/shubhanus/otp-input-react/badge.svg?branch=master)](https://coveralls.io/github/shubhanus/otp-input-react?branch=master)
+
 [![npm](https://img.shields.io/npm/v/otp-input-react?style=flat-square)](https://badge.fury.io/js/otp-input-react)
 
 [![GIPHY](https://media.giphy.com/media/kbbmyfMT282BIPe8Yq/giphy.gif)](https://shubhanus.github.io/otp-input-react/)

@@ -34,7 +34,9 @@
     "eject": "react-scripts eject",
     "publish:npm": "NODE_ENV=production && rm -rf dist && mkdir dist && npx babel src/lib --out-dir dist --copy-files",
     "deploy": "gh-pages -d build",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test:coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "lint": "eslint './src/**/*js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,6 +62,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
+    "coveralls": "3.0.6",
     "gh-pages": "2.0.1",
     "jest-dom": "4.0.0",
     "react": "16.9.0",
