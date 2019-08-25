@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/otp-input-react/precache-manifest.f60553d699e278965c8ca6fb8ca38a93.js"
+  "/otp-input-react/precache-manifest.8194206398e640c7de5b42909720770f.js"
 );
 
 self.addEventListener('message', (event) => {
