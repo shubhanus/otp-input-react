@@ -80,15 +80,13 @@ const OtpInput = ({
   ]);
 
   return (
-    <>
-      <div
-        style={{ display: "flex", ...style }}
-        className={`${className}`}
-        data-testid="otp-input-root"
-      >
-        {renderInputs}
-      </div>
-    </>
+    <div
+      style={{ display: "flex", ...style }}
+      className={`${className}`}
+      data-testid="otp-input-root"
+    >
+      {renderInputs}
+    </div>
   );
 };
 
