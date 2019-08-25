@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import OTPInput from "./lib";
+import OTPInput, { ResendOTP } from "./lib";
 
-const OtpInputCard = ({ title, ...rest }) => {
+const OtpInputCard = ({ title, resendOTP, ...rest }) => {
   const [OTP, setOTP] = useState("");
   return (
     <div
@@ -32,8 +32,10 @@ function App() {
           OTPLength={4}
           otpType="number"
           disabled={false}
+          resendOTP={{}}
           secure
         />
+        <ResendOTP handelResendClick={() => alert("Resend clicked")} />
         <OtpInputCard
           title="Number only input"
           // autoFocus
@@ -42,8 +44,20 @@ function App() {
           disabled={false}
           // secure
         />
+        <ResendOTP
+          renderTime={() => React.Fragment}
+          renderButton={buttonProps => {
+            return (
+              <button {...buttonProps}>
+                {buttonProps.remainingTime !== 0
+                  ? `Please wait for ${buttonProps.remainingTime} sec`
+                  : "Resend"}
+              </button>
+            );
+          }}
+        />
         <OtpInputCard
-          title="alpha"
+          title="Alphabetic input"
           // autoFocus
           OTPLength={4}
           otpType="alpha"
@@ -51,7 +65,7 @@ function App() {
           // secure
         />
         <OtpInputCard
-          title="alphanumeric"
+          title="Alphanumeric input"
           // autoFocus
           OTPLength={4}
           otpType="alphanumeric"

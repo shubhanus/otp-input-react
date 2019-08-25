@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const LOWER_A_KEYCODE = 97;
+// const LOWER_A_KEYCODE = 97;
 const UPPER_A_KEYCODE = 65;
 const LOWER_Z_KEYCODE = 122;
-const UPPER_Z_KEYCODE = 90;
+// const UPPER_Z_KEYCODE = 90;
 const ZERO_KEYCODE = 48;
 const NINE_KEYCODE = 57;
 
@@ -69,7 +69,7 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
     let validCharIndex = 0;
     for (let charIndex = 0; charIndex < otp.length; ++charIndex) {
       if (isValidateChar(otp[charIndex])) {
-        filteredOtpValue[validCharIndex] = (otp[charIndex]);
+        filteredOtpValue[validCharIndex] = otp[charIndex];
         validCharIndex++;
       }
     }
@@ -80,15 +80,23 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
   const isValidateChar = char => {
     switch (otpType) {
       case "number":
-        return !(char.charCodeAt(0) > NINE_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+        return !(
+          char.charCodeAt(0) > NINE_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE
+        );
       case "alpha":
-        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < UPPER_A_KEYCODE);
+        return !(
+          char.charCodeAt(0) > LOWER_Z_KEYCODE ||
+          char.charCodeAt(0) < UPPER_A_KEYCODE
+        );
       case "alphanumeric":
-        return !(char.charCodeAt(0) > LOWER_Z_KEYCODE || char.charCodeAt(0) < ZERO_KEYCODE);
+        return !(
+          char.charCodeAt(0) > LOWER_Z_KEYCODE ||
+          char.charCodeAt(0) < ZERO_KEYCODE
+        );
       default:
         return true;
     }
-  }
+  };
 
   const handleOnChange = e => {
     if (isValidateChar(e.target.value)) {
