@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OTPInput, { ResendOTP } from "./lib";
+import OTPInput, { ResendOTP } from "../lib";
 
 const OtpInputCard = ({ title, resendOTP, ...rest }) => {
   const [OTP, setOTP] = useState("");
