@@ -141,6 +141,12 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
     setActiveInput(index);
     event.target.select();
   };
+  
+  useEffect(() => {
+      if (activeInput > value.length) {
+          setActiveInput(value.length);
+      }
+  }, [activeInput]);
 
   return {
     activeInput,
