@@ -1,5 +1,5 @@
 {
-  "name": "@Uttam28s/otp-input-react",
+  "name": "@uttam28s/otp-input-react",
   "version": "1.0.0",
   "description": "React functional component for otp input",
   "main": "build/index.js",
