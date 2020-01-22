@@ -115,7 +115,7 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
          * This will make easy to change the current input feild without following a long process of prev input to the next input.
          */
         if (
-          e.target.value === "" ||
+          (e.target && e.target.value === "") ||
           e.target.value === undefined ||
           e.target.value === null
         ) {
