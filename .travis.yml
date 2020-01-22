@@ -1,13 +1,27 @@
 sudo: false
-
 language: node_js
-
 node_js:
   - node
-
-script:
-  - npm run lint
-  - npm run test:coveralls 
-
 notifications:
   email: false
+script:
+  - npm run lint
+  - npm run test:coveralls
+  - npm run demo
+  - npm run build
+deploy:
+  # - provider: npm
+  #   email: shubhanus@live.com
+  #   skip_cleanup: true
+  #   api_key:
+  #     secure: 5wzvq7ynxRWpt2QeJ4LajXCWp/3Psf+WJYr7vlQX6wZsQTPoTuzgUfhslztklTSK42MElCHmtC9IAdbJoitX9jgISQyp0u1SD8Plw92eGJKU5Bo2Cn+3MkNxRnWqt4avjxffcwBenOCts52wab2tLJ/8wmBa4daC8AuCjcBls3xTn+TfmvSq0mQalRJUWkLZwotrPUYEshqMVfo7H+pum2pQDAsYWDhTOpcw46bKi2ylDh5M398kSETiNdDzAYgH/PEgqGAcskY6dJbd6UpldIgMM/i04loeilJTVlhJq04ssMl0eGFLOLbD/QtvB0fvk0Kripy092PFrgj5Gv7XOUpfzSGrdpcY3MEuSF/7+ZJQEh/NT1Dc5JO4PjfVObygumK/7tZu3MgA2XoMCQTYfNE9RD61C1XvQ+r58simnY8hMTiKVkZewqfMgagXzNs7r4lbp9cqis8ObF9/T3PH8HD/NVDBVwHoyfC5K2gpQnVh0l1RS034POjnPKKhe/2ulpFMtPJfX05WazcCn9+rjg+rikCfefYaAPR1N1CwwDKDHLYVbHkHZXS298CIvIXozRJyb+1tsTLWmwljB8+LYMS428j0Ii5VtoZzyTJUb9TSf+9U9KhYE/ZLBBDafcf3C1+GMCZ3xTicq1ndHOOy2K19RaSqPp4NlzSjCrR6Ims=
+  #   on:
+  #     tags: true
+  #     repo: shubhanus/otp-input-react
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: y4U450yebWWKNELYHNq2j5NV9S4tWvvC5XqWQKYYtbFgZT3yt+SVyFfOvZ6rpARMBPKvl2LPzLuShy9isiSU8/TRrlFRG/A62WfNUZTWtOKiokBQWEsFNRNxHCPF0wp7yIWagEV433NxJB9fzbEbeq4kGW2NDewtQgbPQZkGPXhs5oXB+ef7WcQQzjsNnErMyUuelLbIadFIbAfoUEYD9k56Q4Rrdg1UcLEG/B4tqgS9CuFFJY4A/Yz8ZU18hoDgL6ZMVpWAVBitiGH6fYhJ45V88v2cOHpwgUpAfkH3rH/qhSLNqCWKcR9fvkoz/qn3h534xburCIM6WqeHhNo2smXmrgI7EOTZouP3phTfM7/aZ3Cb9DxJvoJjZwx/5M8C4K2Vgjt36g3nJ7JXTfi1iQeXLFO/WCeErMq2Uszv5w8gsIyZ7R1bmj9h5+V9Ndgk8Z8OZUTgD3KxNSM6pB9uRpQXIJKffU1z6JhZQJp1kIJqyEJ8doCbOpE5rzeK4g91fUSTTram6WwwpSxDN0oLICq9yb9Q8IzM5zTKXvk2O9ZeagoRW2iNYS4mTAnUas/KSJh0dpVYPkABzkaZcgm0Cp/UsL9gHP+bGY5MKR3N2pwnNQMnZiZ7tscSm+zSUVpwbg6uicxu3f3UqvSdvFxiu0aZ1KGWaYkvDKaPJGVISPs=
+    file: demo
+    on:
+      repo: shubhanus/otp-input-react
