@@ -1,6 +1,6 @@
 {
   "name": "@uttammoradiya/otp-input-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "React functional component for otp input",
   "main": "build/index.js",
