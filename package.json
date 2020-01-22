@@ -1,6 +1,6 @@
 {
-  "name": "otp-input-react",
-  "version": "0.2.0",
+  "name": "@Uttam28s/otp-input-react",
+  "version": "1.0.0",
   "description": "React functional component for otp input",
   "main": "build/index.js",
   "files": [
@@ -16,13 +16,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shubhanus/otp-input-react"
+    "url": "https://github.com/Uttam28s/otp-input-react"
   },
   "author": "Shubhanu Sharma <shubhanus@live.com>",
+  "contributors": [
+    "Uttam Moradiya <umoradiya31@gmail.com>",
+    "VimLeSai <desai.vimal250@gmail.com>"
+  ],
   "bugs": {
-    "url": "https://github.com/shubhanus/otp-input-react/issues"
+    "url": "https://github.com/Uttam28s/otp-input-react/issues"
   },
-  "homepage": "https://shubhanus.github.io/otp-input-react",
+  "homepage": "https://github.com/Uttam28s/otp-input-react",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
