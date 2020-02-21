@@ -58,6 +58,7 @@ const OtpInput = ({
           autoFocus={autoFocus}
           secure={secure}
           data-testid="input"
+          otpType={otpType}
         />
       );
     }
