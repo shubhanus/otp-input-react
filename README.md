@@ -1,72 +1,124 @@
-# React NPM library starter kit
+# otp-input-react
 
-[![Build Status](https://travis-ci.org/DimiMikadze/create-react-library.svg?branch=master)](https://travis-ci.org/DimiMikadze/create-react-library)
-[![Dependencies](https://img.shields.io/david/DimiMikadze/create-react-library.svg)]()
-[![Dev Dependencies](https://img.shields.io/david/dev/DimiMikadze/create-react-library.svg)]()
+A fully customizable, one-time password input with resend OTP component for the web built with React functional component.
 
-based on Facebook's <a href="https://github.com/facebookincubator/create-react-app" target="_blank">Create react app</a>.
-We are constantly updating repository with the updates of `create-react-app`, so we have all new features and bug fixes of it.
+![NPM](https://img.shields.io/npm/l/otp-input-react?style=flat-square)
 
-## Converted to custom setup
+<!-- [![Build Status](https://travis-ci.org/shubhanus/otp-input-react.svg?branch=master)](https://travis-ci.org/shubhanus/otp-input-react) -->
 
-Moved all dependencies to dev dependencies because we don't need extra dependencies for our library after build, but we want all this features while developing: 
+[![Coverage Status](https://coveralls.io/repos/github/shubhanus/otp-input-react/badge.svg?branch=master)](https://coveralls.io/github/shubhanus/otp-input-react?branch=master)
 
-* React, JSX, ES6, and Flow syntax support.
-* Language extras beyond ES6 like the object spread operator.
-* A dev server that lints for common errors.
-* Import CSS and image files directly from JavaScript.
-* Autoprefixed CSS, so you don’t need `-webkit` or other prefixes.
-* A `build` script to bundle JS, CSS, and images for production.
+[![npm](https://img.shields.io/npm/v/otp-input-react?style=flat-square)](https://badge.fury.io/js/otp-input-react)
 
-## Getting Started
+[![GIPHY](https://media.giphy.com/media/kbbmyfMT282BIPe8Yq/giphy.gif)](https://shubhanus.github.io/otp-input-react/)
 
-Clone repo
+### [Working Demo](https://shubhanus.github.io/otp-input-react/)
 
-````
-git clone https://github.com/DimiMikadze/create-react-library.git
-````
+## Installation
 
-Install dependencies
+```
+npm install --save otp-input-react
+```
 
-`npm install` or `yarn install`
+## Usage:
 
-Start development server
+```javascript
+import OTPInput, { ResendOTP } from "otp-input-react";
 
-`npm start` or `yarn start`
+function App() {
+  const [OTP, setOTP] = useState("");
+  return (
+    <OTPInput
+      value={OTP}
+      onChange={setOTP}
+      autoFocus
+      OTPLength={4}
+      otpType="number"
+      disabled={false}
+      secure
+    />
+    <ResendOTP handelResendClick={() => console.log("Resend clicked")} />
+  );
+}
+```
 
-Runs the demo app in development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## API
 
-## Library files
+### OTP input
 
-All library files are located inside `src/lib`  
+| Name           | Type                                           | Required | Default | Description                                                                                                                  | Status  |
+| -------------- | ---------------------------------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- | ------- |
+| OTPLength      | Number                                         | false    | 4       | Number of input boxes.                                                                                                       | Working |
+| onChange       | Function                                       | **true** | -       | Returns OTP code typed in inputs.                                                                                            | Working |
+| value          | String / Number                                | **true** | ''      | The value of the otp passed into the component.                                                                              | Working |
+| disabled       | Boolean                                        | false    | false   | Disables all the inputs.                                                                                                     | Working |
+| autoFocus      | Boolean                                        | false    | false   | Auto focuses input on initial page load.                                                                                     | Working |
+| otpType        | Enum: `any`\|`number`\|`alpha`\|`alphanumeric` | false    | any     | `any` - allows any value. `number` - allow only numbers. `alpha` - allows only `a-zA-Z`. `alphanumeric` - allows `0-9a-zA-z` | Working |
+| secure         | Boolean                                        | false    | false   | Change input type to password.                                                                                               | Working |
+| inputClassName | String                                         | -        | -       | Class for root element.                                                                                                      | Working |
+| className      | String                                         | -        | -       | Class for root element.                                                                                                      | Working |
+| inputStyles    | Object                                         | -        | -       | Styles for input element.                                                                                                    | Working |
+| style          | Object                                         | -        | -       | Styles for root element.                                                                                                     | Working |
 
-## Demo app
+### Resend OTP
 
-Is located inside `src/demo` directory, here you can test your library while developing
+| Name            | Type                    | Required | Default | Description                                                                                                                                                           | Status  |
+| --------------- | ----------------------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| maxTime         | Number                  | false    | 60      | Timer that user has to wait before resend otp gets active.                                                                                                            | Working |
+| onResendClick   | Function                | **true** | -       | Function get triggers when user click on resend otp button. But when button is disabled(i.e. time is not completed) it won't get trigger                              | Working |
+| onTimerComplete | Function                | false    | -       | An optional callback when timer completes.                                                                                                                            | Working |
+| timeInterval    | Number                  | false    | 1000    | You can change time interval.                                                                                                                                         | Working |
+| renderTime      | Function - render props | false    | -       | You can use your own component for seconds. Function will get remainingTime as props you can use it to show timer.                                                    | Working |
+| renderButton    | Function - render props | false    | -       | You can use your own component for resend button. Function will get `disabled` and `onClick` function and `remainingTime` as props you can pass it to your component. | Working |
+| style           | Object                  | false    | -       | For changing root component inline styles                                                                                                                             | Working |
+| className       | string                  | false    | -       | For adding class to root component.                                                                                                                                   | Working |
 
-## Testing
+## Custom timer and button component
 
-`npm run test` or `yarn run test`
+```javascript
+const renderButton = buttonProps => {
+  return <button {...buttonProps}>Resend</button>;
+};
+const renderTime = remainingTime => {
+  return <span>{remainingTime} seconds remaining</span>;
+};
+<ResendOTP renderButton={renderButton} renderTime={renderTime} />;
+```
 
-## Build library
+## Hide timer and show sec in button component
 
-`npm run build` or `yarn run build`
+```javascript
+const renderButton = buttonProps => {
+  return (
+    <button {...buttonProps}>
+      {buttonProps.remainingTime !== 0
+        ? `Please wait for ${buttonProps.remainingTime} sec`
+        : "Resend"}
+    </button>
+  );
+};
+const renderTime = () => React.Fragment;
+<ResendOTP renderButton={renderButton} renderTime={renderTime} />;
+```
 
-Produces production version of library under the `build` folder.
+### TODO
 
-## Publish library
+- [x] Add other type input
+- [ ] Change scaffolding
+- [ ] Add CI
+- [x] Add OTP Timer with resend otp optional type
+- [ ] Add Complete callback for otp
 
-`npm publish`
+### Credits
 
-## Troubleshooting
+https://github.com/hotdang-ca - For adding `alpha|alphanumeric` type and updating docs
 
-#### Usage of other libraries within your library
+### Contributing
 
-- Add the library as a peer dependency in package.json (effectively requiring the calling project to provide this dependency)
-- Add the library as a dev dependency in package.json (effectively allowing this library to successfully build without complaining about not having this dependency)
-- Add the library to the externals config in your webpack.config file(s). By default, only react and react-dom are there, meaning that those are the only two libraries that you can use within your new shared library.
+Feel Free to contributing or feature request
 
-## Example library built with this starter kit
-
-https://github.com/DimiMikadze/react-under-construction
+1. Fork it ( https://github.com/shubhanus/otp-input-react/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new pull request.
