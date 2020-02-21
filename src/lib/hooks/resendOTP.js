@@ -22,7 +22,7 @@ const useResendOTP = ({
       }, timeInterval);
     }
     return () => {
-      clearTimeout(timeout);
+      clearTimeout(timeout.current);
     };
   }, [onTimerComplete, remainingTime, timeInterval]);
 
