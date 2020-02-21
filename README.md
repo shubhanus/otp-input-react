@@ -37,7 +37,7 @@ function App() {
       disabled={false}
       secure
     />
-    <ResendOTP handelResendClick={() => console.log("Resend clicked")} />
+    <ResendOTP onResendClick={() => console.log("Resend clicked")} />
   );
 }
 ```
