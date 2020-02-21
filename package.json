@@ -1,6 +1,6 @@
 {
   "name": "otp-input-react",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React functional component for otp input",
   "main": "build/index.js",
   "files": [
