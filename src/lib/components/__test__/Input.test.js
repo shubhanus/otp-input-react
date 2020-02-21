@@ -29,7 +29,7 @@ test("renders input with inital value", () => {
       data-testid="otp-input"
       maxlength="1"
       style="width: 32px; height: 32px; text-align: center; margin-right: 20px;"
-      type="tel"
+      type="text"
       value="0"
     />
   `);
