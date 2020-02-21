@@ -30,6 +30,7 @@ const Input = ({
   index,
   secure,
   inputStyles,
+  otpType,
   ...rest
 }) => {
   const input = useRef(null);
@@ -52,11 +53,16 @@ const Input = ({
   }, [focus]);
 
   const handelInputFocus = event => onInputFocus(index, event);
-
+  let inputType = "text";
+  if (secure) {
+    inputType = "password";
+  } else if (otpType === "number") {
+    inputType = "tel";
+  }
   return (
     <input
       style={{ ...inputDefaultStyles, ...inputStyles }}
-      type={secure ? "password" : "tel"}
+      type={inputType}
       maxLength="1"
       ref={input}
       disabled={disabled}
@@ -76,7 +82,8 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   value: PropTypes.string,
   secure: PropTypes.bool,
-  inputStyles: PropTypes.object
+  inputStyles: PropTypes.object,
+  otpType: PropTypes.oneOf(["number", "alpha", "alphanumeric", "any"])
 };
 
 export default React.memo(Input);
