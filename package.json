@@ -1,6 +1,6 @@
 {
   "name": "otp-input-react",
-  "version": "0.2.0",
+  "version": "0.2.4",
   "description": "React functional component for otp input",
   "main": "build/index.js",
   "files": [
@@ -72,6 +72,7 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
+    "prettier": "1.19.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.0",
     "react-dev-utils": "^9.0.0",

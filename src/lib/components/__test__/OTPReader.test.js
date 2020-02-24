@@ -28,7 +28,7 @@ test("renders without crashing", () => {
         data-testid="input"
         maxlength="1"
         style="width: 32px; height: 32px; text-align: center; margin-right: 20px;"
-        type="tel"
+        type="text"
         value=""
       />
       <input
@@ -36,7 +36,7 @@ test("renders without crashing", () => {
         data-testid="input"
         maxlength="1"
         style="width: 32px; height: 32px; text-align: center; margin-right: 20px;"
-        type="tel"
+        type="text"
         value=""
       />
       <input
@@ -44,7 +44,7 @@ test("renders without crashing", () => {
         data-testid="input"
         maxlength="1"
         style="width: 32px; height: 32px; text-align: center; margin-right: 20px;"
-        type="tel"
+        type="text"
         value=""
       />
       <input
@@ -52,7 +52,7 @@ test("renders without crashing", () => {
         data-testid="input"
         maxlength="1"
         style="width: 32px; height: 32px; text-align: center; margin-right: 20px;"
-        type="tel"
+        type="text"
         value=""
       />
     </div>
@@ -177,4 +177,3 @@ test("should prevent non-alpha when otpType is alphanumeric", async () => {
   expect(allInp[0].value).toBe("");
   expect(onChange).toBeCalledTimes(0);
 });
-
