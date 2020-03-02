@@ -4,7 +4,9 @@ A fully customizable, one-time password input with resend OTP component for the 
 
 ![NPM](https://img.shields.io/npm/l/otp-input-react?style=flat-square)
 
-<!-- [![Build Status](https://travis-ci.org/shubhanus/otp-input-react.svg?branch=master)](https://travis-ci.org/shubhanus/otp-input-react) -->
+
+[![Build Status](https://travis-ci.org/shubhanus/otp-input-react.svg?branch=master)](https://travis-ci.org/shubhanus/otp-input-react)
+
 
 [![Coverage Status](https://coveralls.io/repos/github/shubhanus/otp-input-react/badge.svg?branch=master)](https://coveralls.io/github/shubhanus/otp-input-react?branch=master)
 
@@ -37,8 +39,7 @@ function App() {
       disabled={false}
       secure
     />
-    <ResendOTP onResendClick={() => console.log("Resend clicked")} />
-  );
+    <ResendOTP handelResendClick={() => console.log("Resend clicked")} />
 }
 ```
 
