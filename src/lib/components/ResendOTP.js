@@ -26,7 +26,7 @@ function ResendOTP({ renderTime, renderButton, style, className, ...props }) {
           remainingTime
         })
       ) : (
-        <button disabled={remainingTime !== 0} onClick={handelResendClick}>
+        <button disabled={remainingTime !== 0} onClick={handelResendClick} type="button">
           Resend OTP
         </button>
       )}
