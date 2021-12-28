@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // const LOWER_A_KEYCODE = 97;
 const UPPER_A_KEYCODE = 65;
@@ -52,9 +52,9 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
       process.env.NODE_ENV === "test"
         ? data.slice(0, OTPLength - activeInput).split("")
         : e.clipboardData
-            .getData("text/plain")
-            .slice(0, OTPLength - activeInput)
-            .split("");
+          .getData("text/plain")
+          .slice(0, OTPLength - activeInput)
+          .split("");
 
     // Paste data from focused input onwards
     // eslint-disable-next-line no-plusplus
@@ -141,6 +141,13 @@ const useOTP = ({ autoFocus, value, otpType, onChange, OTPLength }) => {
     setActiveInput(index);
     event.target.select();
   };
+
+  useEffect(() => {
+    // activeInput should be focused on the right place
+    if (activeInput > value.length) {
+      setActiveInput(value.length);
+    }
+  }, [activeInput, value.length]);
 
   return {
     activeInput,
