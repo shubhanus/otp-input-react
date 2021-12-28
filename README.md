@@ -28,16 +28,18 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 function App() {
   const [OTP, setOTP] = useState("");
   return (
-    <OTPInput
-      value={OTP}
-      onChange={setOTP}
-      autoFocus
-      OTPLength={4}
-      otpType="number"
-      disabled={false}
-      secure
-    />
-    <ResendOTP onResendClick={() => console.log("Resend clicked")} />
+    <>
+      <OTPInput
+        value={OTP}
+        onChange={setOTP}
+        autoFocus
+        OTPLength={4}
+        otpType="number"
+        disabled={false}
+        secure
+      />
+      <ResendOTP onResendClick={() => console.log("Resend clicked")} />
+    </>
   );
 }
 ```
