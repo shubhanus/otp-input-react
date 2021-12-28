@@ -2,22 +2,16 @@ import React from "react";
 import Input from "../Input";
 import { render, fireEvent, wait } from "@testing-library/react";
 
-const inputSetup = props => {
+const inputSetup = (props) => {
   const onChange = jest.fn();
   const { container, getByTestId } = render(
-    <Input
-      index={0}
-      value="0"
-      {...props}
-      data-testid="otp-input"
-      onChange={onChange}
-    />
+    <Input index={0} value="0" {...props} data-testid="otp-input" onChange={onChange} />
   );
   const inputEle = getByTestId("otp-input");
   return {
     onChange,
     container,
-    inputEle
+    inputEle,
   };
 };
 
@@ -47,7 +41,7 @@ test("autofocus input on render", () => {
   const { inputEle, onChange } = inputSetup({
     onInputFocus,
     autoFocus: true,
-    focus: true
+    focus: true,
   });
   expect(document.activeElement).toEqual(inputEle);
   expect(onInputFocus).toBeCalledTimes(1);
@@ -60,4 +54,12 @@ test("calls on change method on value change", async () => {
   await wait(() => {
     expect(onChange).toBeCalledTimes(1);
   });
+});
+
+test("render input with placeholder", () => {
+  const { inputEle } = inputSetup({
+    placholder: "0",
+  });
+  expect(inputEle).toHaveAttribute("placholder");
+  expect(inputEle).toHaveAttribute("placholder", "0");
 });
