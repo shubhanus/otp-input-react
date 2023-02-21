@@ -46,6 +46,7 @@ it("renders without crashing", () => {
       </span>
       <button
         disabled=""
+        type="button"
       >
         Resend OTP
       </button>

@@ -28,16 +28,10 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 function App() {
   const [OTP, setOTP] = useState("");
   return (
-    <OTPInput
-      value={OTP}
-      onChange={setOTP}
-      autoFocus
-      OTPLength={4}
-      otpType="number"
-      disabled={false}
-      secure
-    />
-    <ResendOTP onResendClick={() => console.log("Resend clicked")} />
+    <>
+      <OTPInput value={OTP} onChange={setOTP} autoFocus OTPLength={4} otpType="number" disabled={false} secure />
+      <ResendOTP onResendClick={() => console.log("Resend clicked")} />
+    </>
   );
 }
 ```
@@ -59,6 +53,7 @@ function App() {
 | className      | String                                         | -        | -       | Class for root element.                                                                                                      | Working |
 | inputStyles    | Object                                         | -        | -       | Styles for input element.                                                                                                    | Working |
 | style          | Object                                         | -        | -       | Styles for root element.                                                                                                     | Working |
+| placeholder    | Array\<String\>                                | false    | -       | Placeholder value of each input.                                                                                             | Working |
 
 ### Resend OTP
 
@@ -76,10 +71,10 @@ function App() {
 ## Custom timer and button component
 
 ```javascript
-const renderButton = buttonProps => {
+const renderButton = (buttonProps) => {
   return <button {...buttonProps}>Resend</button>;
 };
-const renderTime = remainingTime => {
+const renderTime = (remainingTime) => {
   return <span>{remainingTime} seconds remaining</span>;
 };
 <ResendOTP renderButton={renderButton} renderTime={renderTime} />;
@@ -88,12 +83,10 @@ const renderTime = remainingTime => {
 ## Hide timer and show sec in button component
 
 ```javascript
-const renderButton = buttonProps => {
+const renderButton = (buttonProps) => {
   return (
     <button {...buttonProps}>
-      {buttonProps.remainingTime !== 0
-        ? `Please wait for ${buttonProps.remainingTime} sec`
-        : "Resend"}
+      {buttonProps.remainingTime !== 0 ? `Please wait for ${buttonProps.remainingTime} sec` : "Resend"}
     </button>
   );
 };

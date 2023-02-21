@@ -6,7 +6,7 @@ const OtpInputCard = ({ title, resendOTP, ...rest }) => {
   return (
     <div
       style={{
-        padding: 12
+        padding: 12,
       }}
     >
       <div style={{ marginBottom: 12 }}>{title}</div>
@@ -21,7 +21,7 @@ function App() {
       style={{
         display: "flex",
         alignItems: "center",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
       <h2>OTP Input React</h2>
@@ -30,6 +30,7 @@ function App() {
           title="Secrate input with auto focus on mount"
           autoFocus
           OTPLength={4}
+          placeholder={[0, 0, 0, 0]}
           otpType="number"
           disabled={false}
           resendOTP={{}}
@@ -46,12 +47,10 @@ function App() {
         />
         <ResendOTP
           renderTime={() => React.Fragment}
-          renderButton={buttonProps => {
+          renderButton={(buttonProps) => {
             return (
               <button {...buttonProps}>
-                {buttonProps.remainingTime !== 0
-                  ? `Please wait for ${buttonProps.remainingTime} sec`
-                  : "Resend"}
+                {buttonProps.remainingTime !== 0 ? `Please wait for ${buttonProps.remainingTime} sec` : "Resend"}
               </button>
             );
           }}
@@ -105,7 +104,7 @@ function App() {
           disabled={false}
           inputStyles={{
             border: 0,
-            borderBottom: "1px solid #cbcbcb"
+            borderBottom: "1px solid #cbcbcb",
           }}
           // secure
         />

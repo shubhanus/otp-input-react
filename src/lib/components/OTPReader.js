@@ -15,7 +15,8 @@ const OtpInput = ({
   className,
   inputClassName,
   inputStyles,
-  style
+  style,
+  placeholder,
 }) => {
   const {
     activeInput,
@@ -24,13 +25,13 @@ const OtpInput = ({
     handleOnKeyDown,
     handelOnInput,
     handleOnPaste,
-    onInputFocus
+    onInputFocus,
   } = useOTP({
     autoFocus,
     value,
     otpType,
     onChange,
-    OTPLength
+    OTPLength,
   });
 
   // Needs to be memorized
@@ -59,6 +60,7 @@ const OtpInput = ({
           secure={secure}
           data-testid="input"
           otpType={otpType}
+          placeholder={placeholder && placeholder[index]}
         />
       );
     }
@@ -77,12 +79,17 @@ const OtpInput = ({
     onInputFocus,
     disabled,
     autoFocus,
-    secure
+    secure,
+    otpType,
+    placeholder,
   ]);
 
   return (
     <div
-      style={{ display: "flex", ...style }}
+      style={{
+        display: "flex",
+        ...style,
+      }}
       className={`${className}`}
       data-testid="otp-input-root"
     >
@@ -102,7 +109,8 @@ OtpInput.propTypes = {
   otpType: PropTypes.oneOf(["number", "alpha", "alphanumeric", "any"]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   inputStyles: PropTypes.object,
-  style: PropTypes.object
+  style: PropTypes.object,
+  placeholder: PropTypes.array,
 };
 
 OtpInput.defaultProps = {
@@ -116,7 +124,8 @@ OtpInput.defaultProps = {
   value: "",
   otpType: "any",
   inputStyles: {},
-  style: {}
+  style: {},
+  placeholder: undefined,
 };
 
 export default OtpInput;
